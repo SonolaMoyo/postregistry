@@ -32,10 +32,32 @@ class Post(db.Model):
         return f'Post("{self.title}", "{self.date_posted}")'
 
 
+posts = [
+    {
+        'author': 'Sonola Moyosoluwalorun',
+        'title': 'Post 1',
+        'content': 'Fullstack Software developer',
+        'date_posted': 'September 30, 2022'
+    },
+{
+        'author': 'Moyosoluwalorun Odunayo',
+        'title': 'Post 2',
+        'content': 'Data Scientist and Machine Learning Expert',
+        'date_posted': 'October 30, 2022'
+    },
+{
+        'author': 'Sonola Moyosoluwalorun Odunayo',
+        'title': 'Post 3',
+        'content': 'Cloud Engineer',
+        'date_posted': 'November 30, 2022'
+    }
+]
+
+
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    return render_template('home.html', posts=posts)
 
 
 if __name__ == '__main__':
