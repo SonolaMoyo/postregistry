@@ -82,5 +82,24 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
+db.create_all()
+db.drop_all()
+db.create_all()
+user1 = User(username='John', email='john@gmail.com', password='john')
+user2 = User(username='Sam', email='sam@gmail.com', password='sam')
+user3 = User(username='Bill', email='bill@gmail.com', password="bill")
+db.session.add(user1)
+db.session.add(user2)
+db.session.add(user3)
+db.session.commit()
+
+post1 = Post(title='Post11', content='John first post', user_id=user1.id)
+post2 = Post(title='Post12', content='Sam first post', user_id=user2.id)
+post3 = Post(title='Post13', content='Bill first post', user_id=user3.id)
+db.session.add(post1)
+db.session.add(post2)
+db.session.add(post3)
+db.session.commit()
+
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
