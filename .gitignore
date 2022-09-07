@@ -1,4 +1,4 @@
 venv/
 main.py
-site.db
 site.db-journal
+site.db
