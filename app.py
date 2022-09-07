@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
 
-#created a user class
+# created a user class
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(25), unique=True, nullable=False)
@@ -20,7 +20,16 @@ class User(db.Model):
     def __repr__(self):
         return f'User("{self.username}", "{self.email}", "{self.image}")'
 
+#created a post class
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(70), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
+    def __repr__(self):
+        return f'Post("{self.title}", "{self.date_posted}")'
 
 
 @app.route("/")
